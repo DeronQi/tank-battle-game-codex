@@ -61,3 +61,7 @@ The project includes 50 core regression tests. Browser verification and screensh
 The game can also be served from a static website root. Current asset paths assume root deployment; hosting under a subpath requires updating those paths. The included development server binds only to `127.0.0.1`.
 
 See [Contributing](../CONTRIBUTING.md) for bug reports and changes.
+
+## License
+
+[MIT](../LICENSE). Retain the copyright and permission notice when reusing or distributing the project.

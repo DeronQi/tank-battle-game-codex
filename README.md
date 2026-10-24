@@ -1,6 +1,7 @@
 # 钢铁前线 · STEEL FRONT
 
 [![CI](https://github.com/DeronQi/tank-battle-game-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/DeronQi/tank-battle-game-codex/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 [English](docs/README.en.md) · [玩法与关卡工坊](docs/PLAYING.md) · [架构](docs/ARCHITECTURE.md) · [测试](docs/TESTING.md) · [验证记录](VERIFICATION.md)
 
@@ -115,3 +116,7 @@ node scripts/benchmark-ai.mjs
 ## 部署
 
 也可将 `index.html`、`src/`、`public/` 放到静态网站根目录。当前资源路径按根目录组织；子路径部署需调整资源路径。本项目的本地开发服务器只监听 `127.0.0.1`，不作为公网生产服务器。
+
+## 许可证
+
+本项目使用 [MIT 许可证](LICENSE)，允许复用、修改和分发，需保留版权与许可声明。

@@ -2,6 +2,7 @@
   "name": "steel-front",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "钢铁前线：支持双人、关卡编辑与 AI 演示的坦克大战",
   "engines": {
