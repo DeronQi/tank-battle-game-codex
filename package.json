@@ -1,0 +1,24 @@
+{
+  "name": "steel-front",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "钢铁前线：支持双人、关卡编辑与 AI 演示的坦克大战",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeronQi/tank-battle-game-codex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeronQi/tank-battle-game-codex/issues"
+  },
+  "homepage": "https://github.com/DeronQi/tank-battle-game-codex#readme",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node --test tests/game.test.js",
+    "check": "node --check src/engine.js && node --check src/main.js && node --check src/renderer.js && node --check src/campaign.js && node --check server.mjs"
+  }
+}

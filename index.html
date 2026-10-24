@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111513" />
+  <title>钢铁前线 STEEL FRONT · 坦克大战</title>
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="钢铁前线首页"><span class="brand-mark">SF<span>✦</span></span><span class="brand-word">钢铁前线<small>STEEL FRONT</small></span></a>
+      <nav aria-label="主导航">
+        <button class="nav-item active" id="nav-battle" aria-label="开始画面"><span data-icon="crosshair"></span>开始画面</button>
+        <button class="nav-item" id="nav-editor" aria-label="关卡工坊"><span data-icon="grid"></span>关卡工坊</button>
+        <button class="nav-item" id="nav-guide" aria-label="作战手册"><span data-icon="book"></span>作战手册</button>
+      </nav>
+      <div class="topbar-end"><span class="local-tag"><i></i> 本地街机</span><button class="icon-button sound-button" id="sound" title="开启音效" aria-label="开启音效"><span data-icon="volume"></span></button><button class="icon-button" id="help" title="操作帮助" aria-label="操作帮助"><span data-icon="help"></span></button></div>
+    </header>
+
+    <main>
+      <section id="setup-screen" class="setup-screen" aria-label="开始选择画面">
+        <div class="setup-heading"><div class="eyebrow">STEEL FRONT / READY TO DEPLOY</div><h1>选择你的<em>作战方式。</em></h1><p>独自守卫、并肩作战，或让 AI 接管战场。</p></div>
+          <section class="panel deploy-panel"><div class="panel-title"><h2><span data-icon="sliders"></span>选择本次战役</h2><span class="tiny-code">DEPLOYMENT</span></div>
+            <label class="field-label">作战模式 <span>GAME MODE</span></label>
+            <div class="mode-options" role="group" aria-label="作战模式">
+              <button class="mode-option selected" data-mode="solo"><span class="mode-symbol" data-icon="user"></span><span><b>单人作战</b><small>一个人的钢铁防线</small></span><i></i></button>
+              <button class="mode-option" data-mode="duo"><span class="mode-symbol" data-icon="users"></span><span><b>双人协作</b><small>并肩作战，守卫基地</small></span><i></i></button>
+              <button class="mode-option" data-mode="demo"><span class="mode-symbol" data-icon="cpu"></span><span><b>AI 演示</b><small>交给 AI，战斗永不落幕</small></span><i></i></button>
+            </div>
+            <div class="ai-options hidden" id="ai-options"><label class="field-label">AI 玩家数量</label><div class="segmented"><button class="selected" data-ai="1">1 个 AI</button><button data-ai="2">2 个 AI</button></div><p>胜利自动进入下一关，失败自动重试本关。</p></div>
+            <div class="field-row"><label for="difficulty" class="field-label">敌军强度</label><span class="field-caption">DIFFICULTY</span></div><select id="difficulty"><option value="normal">标准 · 经典挑战</option><option value="easy">轻松 · 初入战场</option><option value="hard">精英 · 火力全开</option></select>
+            <div class="field-row"><label for="map-source" class="field-label">战场来源</label><span class="field-caption">BATTLEFIELD</span></div><select id="map-source"><option value="random">随机战场</option><option value="custom">自定义关卡</option></select>
+            <button class="primary-button deploy-button" id="start"><span data-icon="play"></span><span>开始作战</span><span class="button-arrow">↗</span></button>
+            <button class="secondary-button hidden" id="return-battle">返回当前战场</button>
+            <p class="setup-note"><span data-icon="shuffle"></span>每次出发，都是一张新地图</p>
+          </section>
+      </section>
+      <section id="battle-screen" class="hidden" aria-label="作战主界面">
+      <div class="dashboard">
+        <section class="battle-section" aria-label="游戏战场">
+          <div class="battle-toolbar"><div class="battle-title"><i id="status-dot"></i><b id="battle-status">战场待命</b><span id="seed-label">SECTOR 01</span></div><div class="battle-tools"><button class="icon-button" id="reroll" title="返回开始画面" aria-label="返回开始画面"><span data-icon="sliders"></span></button><button class="icon-button" id="pause" title="暂停或继续" aria-label="暂停或继续" disabled><span data-icon="pause"></span></button><button class="icon-button" id="fullscreen" title="全屏作战界面" aria-label="全屏作战界面" aria-pressed="false"><span data-icon="expand"></span></button></div></div>
+          <div class="battle-frame" id="battle-frame"><div class="canvas-wrap" id="canvas-wrap"><canvas id="game" width="624" height="624" tabindex="0" aria-label="坦克大战游戏画面，P1 使用 WASD 移动、空格开火，P2 使用方向键移动、Enter 开火"></canvas><div class="canvas-vignette"></div><div class="game-overlay" id="game-overlay"><div class="overlay-decoration">✦</div><span class="overlay-eyebrow">DEFEND. DESTROY. REPEAT.</span><h2>战场已就绪</h2><p>保护基地，击退所有敌军。<br>准备好迎接第一轮交锋了吗？</p><button class="primary-button" id="overlay-start"><span data-icon="play"></span>即刻出击</button><span class="overlay-hint">返回开始画面选择模式</span></div><div class="canvas-bottom"><span>26 × 26 / TACTICAL GRID</span><span id="canvas-mode">PROTECT YOUR BASE</span></div></div></div>
+          <div class="battle-bottom"><span><i></i><span id="battle-message">基地是最后的防线。请务必守住它。</span></span><button id="edit-current"><span data-icon="edit"></span>编辑此地图</button></div>
+          <div class="touch-controls" id="touch-controls"><div class="touch-dpad"><button data-key="KeyW" aria-label="向上">↑</button><button data-key="KeyA" aria-label="向左">←</button><button data-key="KeyS" aria-label="向下">↓</button><button data-key="KeyD" aria-label="向右">→</button></div><button class="touch-fire" data-key="Space">开火</button></div>
+        </section>
+
+        <aside class="right-column"><section class="panel intel-panel"><div class="panel-title"><h2><span data-icon="activity"></span>战场情报</h2><span class="live-tag">LIVE</span></div><div class="level-stat"><span>当前关卡 <small>STAGE</small></span><strong id="level-stat">01</strong><div class="level-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="stat-pair"><div><span>总得分</span><b id="score-stat">000000</b></div><div><span>最高纪录 <span class="record-star">✦</span></span><b id="high-stat">000000</b></div></div><div class="enemy-count"><span>剩余敌军</span><b><span id="remaining-stat">12</span><small> 辆</small></b></div><div class="enemy-pips" id="enemy-pips"></div><div class="base-status" id="base-status"><span data-icon="shield"></span><span>指挥基地</span><b>安全</b></div></section>
+          <section class="panel squad-panel"><div class="panel-title"><h2><span data-icon="users"></span>我方小队</h2></div><div class="squad-member"><canvas id="p1-tank" width="40" height="40"></canvas><div><b>玩家 1 <span id="p1-type">PLAYER</span></b><small id="p1-upgrade">标准火力 · Lv.1</small></div><span class="lives" id="p1-lives">♥ ♥ ♥</span></div><div class="squad-member inactive" id="p2-row"><canvas id="p2-tank" width="40" height="40"></canvas><div><b>玩家 2 <span id="p2-type">OFFLINE</span></b><small id="p2-upgrade">等待加入战场</small></div><span class="lives blue" id="p2-lives">—</span></div></section>
+        </aside>
+      </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="editor-dialog" class="editor-dialog"><div class="dialog-heading"><div><span class="eyebrow">BUILD YOUR BATTLEFIELD</span><h2>关卡工坊 <span>LEVEL WORKSHOP</span></h2></div><button class="icon-button close-dialog" aria-label="关闭编辑器"><span data-icon="x"></span></button></div><div class="editor-layout"><div class="editor-board"><canvas id="editor-canvas" width="624" height="624" aria-label="关卡编辑画布，点击或拖动绘制地形"></canvas></div><aside class="editor-sidebar"><label class="field-label" for="level-name">关卡名称</label><input id="level-name" maxlength="32" value="我的钢铁防线" /><label class="field-label">地形画笔</label><div id="brushes" class="brushes"></div><p class="editor-tip">点击或拖动绘制，右键擦除。出生区和基地保留不可编辑。</p><div class="editor-actions"><button id="editor-undo">↶ 撤销</button><button id="editor-clear">清空</button><button id="editor-random">随机生成</button><button id="editor-load">载入已保存</button><button id="editor-import">导入 JSON</button><button id="editor-export">导出 JSON</button></div><input type="file" id="import-file" accept="application/json,.json" hidden /><p id="editor-validation" class="editor-validation"></p><button class="primary-button" id="editor-save"><span data-icon="save"></span>保存关卡</button><button class="secondary-button" id="editor-play">保存并开始作战 ↗</button><small class="storage-note">保存在当前浏览器。导出文件可备份、分享；后续关卡自动随机生成。</small></aside></div></dialog>
+
+  <dialog id="guide-dialog"><div class="dialog-heading"><div><span class="eyebrow">FIELD MANUAL / 01</span><h2>每一位指挥官，都从这里开始。</h2></div><button class="icon-button close-dialog" aria-label="关闭手册"><span data-icon="x"></span></button></div><div class="guide-content"><div class="guide-intro"><span>01</span><div><h3>守住基地，消灭全部敌军</h3><p>敌人从地图上方出击。基地被击毁，或全体玩家的生命耗尽，战斗即告失败。通关后可进入下一张随机地图，存活玩家的生命和火力会保留。</p></div></div><div class="guide-intro"><span>02</span><div><h3>操作指南 · 两个人，一道防线</h3><p>P1：WASD 移动，空格开火。P2：方向键移动，Enter 开火。长按可连续射击；P 暂停，M 切换音效。友军炮弹不会造成伤害。移动端提供 P1 触控键，双人建议使用桌面键盘。</p></div></div><div class="guide-intro"><span>03</span><div><h3>了解你的对手</h3><div class="enemy-guide"><div><i style="--enemy-color:#d3b87c"></i><b>侦察型 · I</b><small>1 点装甲，常规火力</small></div><div><i style="--enemy-color:#e28d54"></i><b>突击型 · II</b><small>1 点装甲，快速移动</small></div><div><i style="--enemy-color:#a3bcc0"></i><b>速射型 · III</b><small>2 点装甲，快速开火</small></div><div><i style="--enemy-color:#b89dd3"></i><b>重装型 · IV</b><small>4 点装甲，高额得分</small></div></div></div></div><div class="guide-intro"><span>04</span><div><h3>战地补给 · 七种随机道具</h3><div class="power-guide"><p><b>★ 火力</b>提高炮速与威力；Lv.3 可击穿钢墙。</p><p><b>◇ 护盾</b>12 秒免疫伤害。</p><p><b>✹ 轰炸</b>摧毁当前场上的全部敌军。</p><p><b>♥ 生命</b>获得额外生命，上限 6 条。</p><p><b>◷ 冻结</b>冻结敌军 8 秒。</p><p><b>▣ 加固</b>修复基地护墙，20 秒钢铁防护。</p><p><b>⚡ 加速</b>12 秒提升移动与开火速度。</p></div></div></div><div class="guide-intro"><span>05</span><div><h3>让 AI 接管，或创造自己的战场</h3><p>AI 按「保护基地 → 自身安全 → 杀伤敌人」决策：优先对射抵消射向基地的炮弹，必要时牺牲生命以车体挡弹；双 AI 优先由有护盾的队员拦截。基地无紧急威胁时，预判来袭炮弹和交叉火力，再选择闪避或对射。安全时主动评估七种道具，按收益、可达路线和剩余时间决定拾取，双 AI 协调采集；基地告急或有来袭炮弹时仍优先防御。安全时主动推进、寻找射击角度、打通砖墙并绕行钢墙；双 AI 分目标进攻与后方支援，基地暴露时收缩防区。支持 1 或 2 个 AI，胜利后自动进入下一关，失败后自动重试原地图。工坊支持 6 种地形；砖墙可破坏、钢墙需 Lv.3 火力、水域仅炮弹能穿过、树林提供视觉掩护、冰面加快移动。AI 是规则算法，仍可能失守。</p></div></div></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

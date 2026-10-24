@@ -1,0 +1,43 @@
+{
+  "difficulty": "normal",
+  "stage": 1,
+  "seeds": "0–99",
+  "timestep": "1/30 second",
+  "simulationLimitSeconds": 360,
+  "results": [
+    {
+      "players": 1,
+      "games": 100,
+      "wins": 81,
+      "losses": 19,
+      "unfinishedSeeds": [],
+      "kills": 1085,
+      "deaths": 60,
+      "evasions": 532,
+      "counterShots": 268,
+      "interceptions": 514,
+      "baseBlocks": 11,
+      "baseInterceptions": 23,
+      "pickups": 375,
+      "averageWinSeconds": 42.80576131687256,
+      "medianWinSeconds": 42.866666666666795
+    },
+    {
+      "players": 2,
+      "games": 100,
+      "wins": 99,
+      "losses": 1,
+      "unfinishedSeeds": [],
+      "kills": 1191,
+      "deaths": 63,
+      "evasions": 653,
+      "counterShots": 307,
+      "interceptions": 609,
+      "baseBlocks": 2,
+      "baseInterceptions": 3,
+      "pickups": 423,
+      "averageWinSeconds": 40.06127946127975,
+      "medianWinSeconds": 39.600000000000314
+    }
+  ]
+}
